@@ -80,9 +80,6 @@ class Articulo implements Comparable<Articulo> /* , Comparator<Articulo> */ {
 	private int numero;
 	private String descripcion;
 
-//	public Articulo() {
-//	}
-
 	public Articulo(int numero, String descripcion) {
 		this.numero = numero;
 		this.descripcion = descripcion;
@@ -106,6 +103,4 @@ class Articulo implements Comparable<Articulo> /* , Comparator<Articulo> */ {
 		return "Articulo [numero=" + numero + ", descripcion=" + descripcion + "]";
 	}
 
-
 }
-

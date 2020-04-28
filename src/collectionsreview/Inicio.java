@@ -1,5 +1,6 @@
 package collectionsreview;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -73,8 +74,6 @@ public class Inicio {
 
 		System.out.println("\n--------LIST LINKEDLISTSET AMBAS DIRECCIONES------------------------");
 
-		
-		
 		System.out.println("\n--------TREESET COMPARABLE COMPARATOR------------------------");
 		Articulo primero = new Articulo(1102, "Primer articulo");
 		Articulo segundo = new Articulo(20, "Segundo articulo");
@@ -83,9 +82,40 @@ public class Inicio {
 		Articulo quinto = new Articulo(1101, "Quinto articulo");
 		Articulo sexto = new Articulo(6, "Sexto articulo");
 
-		Articulo articuloComparar = new Articulo();
+		System.out.println("\n--- ORDENADO POR ARTICULO -> IMPLEMENTAMOS COMPARABLE EN ARTICULO---");
 
-		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(articuloComparar);
+		TreeSet<Articulo> articulosComparable = new TreeSet<Articulo>();
+		articulosComparable.add(cuarto);
+		articulosComparable.add(quinto);
+		articulosComparable.add(segundo);
+		articulosComparable.add(tercer);
+		articulosComparable.add(sexto);
+		articulosComparable.add(primero);
+
+		for (Articulo art : articulosComparable) {
+			System.out.println(art.toString());
+		}
+
+		System.out.println("\n--- ORDENADO POR DESCRIPCION -> IMPLEMENTAMOS COMPARATOR EN ARTICULO---");
+
+//		OPCION 1 -> usamos solo la clase articulo pero definimos dos intefaces en ella
+//		Articulo comparaArt = new Articulo(); 
+//		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(comparaArt);
+
+//		OPCION 2 -> Heredamos comparador en ComapradorArticulos e implementamos una interfaz en cada una
+//		comparadorArticulos comparaArt = new comparadorArticulos(); 
+//		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(comparaArt);
+
+//		OPCION 3 -> Usamos clases internas
+		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(new Comparator<Articulo>() {
+			@Override
+			public int compare(Articulo o1, Articulo o2) {
+				String descA = o1.getDescripcion();
+				String descB = o2.getDescripcion();
+				return descA.compareTo(descB);
+			}
+		});
+
 		articulosComparator.add(primero);
 		articulosComparator.add(segundo);
 		articulosComparator.add(tercer);
