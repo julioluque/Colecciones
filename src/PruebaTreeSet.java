@@ -28,7 +28,7 @@ public class PruebaTreeSet {
 		Articulo sexto = new Articulo(6, "Sexto articulo");
 
 		System.out.println("\n--- ORDENADO POR ARTICULO -> IMPLEMENTAMOS COMPARABLE EN ARTICULO---");
-		
+
 		TreeSet<Articulo> articulosComparable = new TreeSet<Articulo>();
 		articulosComparable.add(cuarto);
 		articulosComparable.add(quinto);
@@ -40,35 +40,38 @@ public class PruebaTreeSet {
 		for (Articulo art : articulosComparable) {
 			System.out.println(art.toString());
 		}
-	
-		
-		
+
 		System.out.println("\n--- ORDENADO POR DESCRIPCION -> IMPLEMENTAMOS COMPARATOR EN ARTICULO---");
-		
-		Articulo articuloComparar = new Articulo();
-	
-		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(articuloComparar);
+
+//		OPCION 1 -> usamos solo la clase articulo pero definimos dos intefaces en ella
+//		Articulo comparaArt = new Articulo(); 
+//		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(comparaArt);
+
+//		OPCION 2 -> Heredamos comparador en ComapradorArticulos e implementamos una interfaz en cada una
+		comparadorArticulos comparaArt = new comparadorArticulos(); 
+		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(comparaArt);
+
 		articulosComparator.add(primero);
 		articulosComparator.add(segundo);
 		articulosComparator.add(tercer);
 		articulosComparator.add(cuarto);
 		articulosComparator.add(quinto);
 		articulosComparator.add(sexto);
-		
+
 		for (Articulo art : articulosComparator) {
 			System.out.println(art.toString());
 		}
-		
+
 	}
 }
 
-class Articulo implements Comparable<Articulo>, Comparator<Articulo> {
+class Articulo implements Comparable<Articulo> /* , Comparator<Articulo> */ {
 
 	private int numero;
 	private String descripcion;
 
-	public Articulo() {
-	}
+//	public Articulo() {
+//	}
 
 	public Articulo(int numero, String descripcion) {
 		this.numero = numero;
@@ -92,6 +95,18 @@ class Articulo implements Comparable<Articulo>, Comparator<Articulo> {
 	public String toString() {
 		return "Articulo [numero=" + numero + ", descripcion=" + descripcion + "]";
 	}
+
+//	@Override
+//	public int compare(Articulo o1, Articulo o2) {
+//		String descA = o1.getDescripcion();
+//		String descB = o2.getDescripcion();
+//
+//		return descA.compareTo(descB);
+//	}
+
+}
+
+class comparadorArticulos implements Comparator<Articulo> {
 
 	@Override
 	public int compare(Articulo o1, Articulo o2) {
