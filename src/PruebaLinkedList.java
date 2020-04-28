@@ -19,5 +19,6 @@ public class PruebaLinkedList {
 		for (String persona : personas) {
 			System.out.println(persona);
 		}
+		
 	}
 }
