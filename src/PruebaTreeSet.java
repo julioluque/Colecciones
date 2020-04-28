@@ -48,8 +48,18 @@ public class PruebaTreeSet {
 //		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(comparaArt);
 
 //		OPCION 2 -> Heredamos comparador en ComapradorArticulos e implementamos una interfaz en cada una
-		comparadorArticulos comparaArt = new comparadorArticulos(); 
-		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(comparaArt);
+//		comparadorArticulos comparaArt = new comparadorArticulos(); 
+//		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(comparaArt);
+
+//		OPCION 3 -> Usamos clases internas
+		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(new Comparator<Articulo>() {
+			@Override
+			public int compare(Articulo o1, Articulo o2) {
+				String descA = o1.getDescripcion();
+				String descB = o2.getDescripcion();
+				return descA.compareTo(descB);
+			}
+		});
 
 		articulosComparator.add(primero);
 		articulosComparator.add(segundo);
@@ -96,24 +106,6 @@ class Articulo implements Comparable<Articulo> /* , Comparator<Articulo> */ {
 		return "Articulo [numero=" + numero + ", descripcion=" + descripcion + "]";
 	}
 
-//	@Override
-//	public int compare(Articulo o1, Articulo o2) {
-//		String descA = o1.getDescripcion();
-//		String descB = o2.getDescripcion();
-//
-//		return descA.compareTo(descB);
-//	}
 
 }
 
-class comparadorArticulos implements Comparator<Articulo> {
-
-	@Override
-	public int compare(Articulo o1, Articulo o2) {
-		String descA = o1.getDescripcion();
-		String descB = o2.getDescripcion();
-
-		return descA.compareTo(descB);
-	}
-
-}
