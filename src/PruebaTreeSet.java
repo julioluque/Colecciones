@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.TreeSet;
 
 public class PruebaTreeSet {
@@ -26,25 +27,48 @@ public class PruebaTreeSet {
 		Articulo quinto = new Articulo(1101, "Quinto articulo");
 		Articulo sexto = new Articulo(6, "Sexto articulo");
 
-		TreeSet<Articulo> articulo = new TreeSet<Articulo>();
-		articulo.add(cuarto);
-		articulo.add(quinto);
-		articulo.add(segundo);
-		articulo.add(tercer);
-		articulo.add(sexto);
-		articulo.add(primero);
-
 		System.out.println("\n--- ORDENADO POR ARTICULO -> IMPLEMENTAMOS COMPARABLE EN ARTICULO---");
-		for (Articulo art : articulo) {
-			System.out.println(art.getDescripcion());
+		
+		TreeSet<Articulo> articulosComparable = new TreeSet<Articulo>();
+		articulosComparable.add(cuarto);
+		articulosComparable.add(quinto);
+		articulosComparable.add(segundo);
+		articulosComparable.add(tercer);
+		articulosComparable.add(sexto);
+		articulosComparable.add(primero);
+
+		for (Articulo art : articulosComparable) {
+			System.out.println(art.toString());
 		}
+	
+		
+		
+		System.out.println("\n--- ORDENADO POR DESCRIPCION -> IMPLEMENTAMOS COMPARATOR EN ARTICULO---");
+		
+		Articulo articuloComparar = new Articulo();
+	
+		TreeSet<Articulo> articulosComparator = new TreeSet<Articulo>(articuloComparar);
+		articulosComparator.add(primero);
+		articulosComparator.add(segundo);
+		articulosComparator.add(tercer);
+		articulosComparator.add(cuarto);
+		articulosComparator.add(quinto);
+		articulosComparator.add(sexto);
+		
+		for (Articulo art : articulosComparator) {
+			System.out.println(art.toString());
+		}
+		
 	}
 }
 
-class Articulo implements Comparable<Articulo> {
+class Articulo implements Comparable<Articulo>, Comparator<Articulo> {
 
 	private int numero;
 	private String descripcion;
+
+	public Articulo() {
+	}
 
 	public Articulo(int numero, String descripcion) {
 		this.numero = numero;
@@ -55,9 +79,26 @@ class Articulo implements Comparable<Articulo> {
 		return descripcion;
 	}
 
+	public int getNumero() {
+		return numero;
+	}
+
 	@Override
 	public int compareTo(Articulo o) {
 		return numero - o.numero;
+	}
+
+	@Override
+	public String toString() {
+		return "Articulo [numero=" + numero + ", descripcion=" + descripcion + "]";
+	}
+
+	@Override
+	public int compare(Articulo o1, Articulo o2) {
+		String descA = o1.getDescripcion();
+		String descB = o2.getDescripcion();
+
+		return descA.compareTo(descB);
 	}
 
 }
