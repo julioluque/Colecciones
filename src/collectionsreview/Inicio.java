@@ -1,10 +1,15 @@
 package collectionsreview;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -41,6 +46,7 @@ public class Inicio {
 			System.out.println(cliente.toString());
 		}
 
+		System.out.println("\n#######################################################################");
 		System.out.println("\n--------LIST LISTITERATOR------------------------");
 		LinkedList<Cliente> clienteList = new LinkedList<Cliente>();
 		clienteList.add(c1);
@@ -71,9 +77,9 @@ public class Inicio {
 
 		System.out.println("HashCode Libro 1 : " + java1.hashCode());
 		System.out.println("HashCode Libro 2 : " + java1.hashCode());
-
+		System.out.println("\n#######################################################################");
 		System.out.println("\n--------LIST LINKEDLISTSET AMBAS DIRECCIONES------------------------");
-
+		System.out.println("\n#######################################################################");
 		System.out.println("\n--------TREESET COMPARABLE COMPARATOR------------------------");
 		Articulo primero = new Articulo(1102, "Primer articulo");
 		Articulo segundo = new Articulo(20, "Segundo articulo");
@@ -126,6 +132,40 @@ public class Inicio {
 		for (Articulo art : articulosComparator) {
 			System.out.println(art.toString());
 		}
+
+		System.out.println("\n#######################################################################");
+		System.out.println("\n--------MAPS HASHMAP INTEFAZ INTERNA ENTRYSET ------------------------");
+
+		HashMap<String, Empleado> personal = new HashMap<String, Empleado>();
+		personal.put("145", new Empleado("Delfina"));
+		personal.put("146", new Empleado("Martin"));
+		personal.put("147", new Empleado("Sofia"));
+		personal.put("148", new Empleado("Julio"));
+		personal.put("149", new Empleado("Julian"));
+		personal.put("150", new Empleado("Daniela"));
+		personal.put("151", new Empleado("Cecilia"));
+		personal.put("152", new Empleado("Roberto"));
+
+		System.out.println(personal);
+
+		personal.remove("146");
+		System.out.println(personal);
+
+		personal.put("146", new Empleado("Eduardo"));
+		personal.put("152", new Empleado("Maldonado"));
+		System.out.println(personal);
+
+		System.out.println("---------ENTRY SET--------");
+		System.out.println(personal.entrySet());
+
+		System.out.println("---------ENTRY SET MANUAL--------");
+		for (Map.Entry<String, Empleado> p : personal.entrySet()) {
+			String clave = p.getKey();
+			Empleado valor = p.getValue();
+			System.out.println("clave=" + clave + ", valor=" + valor);
+		}
+
+		
 	}
 
 }

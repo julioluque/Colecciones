@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
-public class PruebMapas {
+public class PruebaMapas {
 
 	public static void main(String[] args) {
 
